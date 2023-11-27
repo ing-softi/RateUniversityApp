@@ -8,10 +8,9 @@ public class RateApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RateApplication.class, args);
-<<<<<<< HEAD
-=======
+
 		//Koment test
->>>>>>> kleardo
+
 	}
 
 }
