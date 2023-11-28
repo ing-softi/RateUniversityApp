@@ -1,6 +1,8 @@
 package rate.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import rate.dto.UserDto;
 
 @Entity
 @Table (name = "user")
@@ -24,6 +26,12 @@ public class User {
         this.password = password;
     }
 
+    public User(UserDto userDto){
+        this.name = userDto.getName();
+        this.surname =userDto.getSurname();
+        this.email = userDto.getEmail();
+        this.password = userDto.getPassword();
+    }
     public Integer getId() {
         return id;
     }
