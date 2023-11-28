@@ -1,3 +1,4 @@
+create schema rate_university_app;
 create table user (
 	id int not null auto_increment,
     name varchar(30) not null,
