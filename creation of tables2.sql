@@ -60,8 +60,18 @@ INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_
 
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) VALUES ('Artificial Intelligence',0.0,'John John',30,'Saturday','08:00','12:00',0);
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) VALUES ('Cybersecurity',0.0,'John John',30,'Saturday','14:00','17:00',0);
+
+create table comments (
+	id int not null auto_increment,
+    comment varchar(250) not null,
+    user_id int,
+    course_id int,
+    PRIMARY KEY (id)
+);
+
 SELECT * FROM course;
 SELECT * FROM user;
 SELECT * FROM user_course_relate;
 SELECT * FROM role;
 SELECT * FROM user_role_relate;
+SELECT * FROM comments;
