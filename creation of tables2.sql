@@ -1,4 +1,7 @@
-create schema rate_university_app;
+
+/*create schema rate_university_app;*/
+
+DROP TABLE IF EXISTS  user;
 create table user (
 	id int not null auto_increment,
     name varchar(30) not null,
@@ -8,6 +11,7 @@ create table user (
     PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS  course;
 create table course (
 	id int not null auto_increment,
     name varchar(30) not null,
@@ -21,31 +25,42 @@ create table course (
     PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS  user_course_relate;
 create table user_course_relate (
+	id int not null auto_increment,
 	course_id int, 
     user_id int,
-    role_id int
+    PRIMARY KEY(id),
+    FOREIGN KEY (course_id) REFERENCES course (id),
+    FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
+DROP TABLE IF EXISTS role;
 create table role (
 	id int not null auto_increment,
     role_name varchar(30),
-     PRIMARY KEY (id)
+	PRIMARY KEY (id)
 );
 INSERT INTO role (role_name) VALUES ('ROLE_ADMIN');
 INSERT INTO role (role_name) VALUES ('ROLE_USER');
 
+DROP TABLE IF EXISTS  user_role_relate;
 create table user_role_relate (
+	id int not null auto_increment,
     user_id int,
-    role_id int
+    role_id int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (role_id) REFERENCES role (id),
+    FOREIGN KEY (user_id) REFERENCES user (id)
 );
+
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) 
 VALUES ('Computer Science',0.0,'John John',30,'Monday','08:00','12:00',0);
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) 
 VALUES ('Digital Logic Design',0.0,'John John',30,'Monday','14:00','17:00',0);
 
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) 
-VALUES ('Computer Organization',0.0,'John John',30,'Tuesday','08:00','12:00',0);
+VALUES ('Computer Organization',5.0,'John John',30,'Tuesday','08:00','12:00',0);
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) 
 VALUES ('Operating Systems',0.0,'John John',30,'Tuesday','14:00','17:00',0);
 
@@ -61,12 +76,15 @@ INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) VALUES ('Artificial Intelligence',0.0,'John John',30,'Saturday','08:00','12:00',0);
 INSERT INTO course (name, average_rates,professor, total_hours, week_day, start_time, end_time, registered_students) VALUES ('Cybersecurity',0.0,'John John',30,'Saturday','14:00','17:00',0);
 
+DROP TABLE IF EXISTS  comments;
 create table comments (
 	id int not null auto_increment,
     comment varchar(250) not null,
     user_id int,
     course_id int,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (course_id) REFERENCES course (id),
+    FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 SELECT * FROM course;
