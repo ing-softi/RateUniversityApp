@@ -5,7 +5,7 @@ public class RateAppException extends java.lang.Exception {
         return "No user found with "+key+": "+value;
     }
     public static <Key,Value> String alreadyRegistered(Key key,Value value){
-        return "User with "+key+": "+value+" is alrady registered!";
+        return "User with "+key+": "+value+" is already registered!";
     }
 
 }

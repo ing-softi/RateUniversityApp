@@ -10,7 +10,7 @@ function start(data){
   courses=data;
     for(var course of courses){
         var stars="";
-        for(var i=0;i<course.averageRates;i++)
+        for(var i=0;i<Math.round(course.averageRates);i++)
         stars=stars+"<i class='fas fa-star'></i>";
         courseRef.innerHTML +=`
         <div class="pro">
@@ -23,16 +23,17 @@ function start(data){
 				<h4>Prof.`+course.professor +`</h4>
 			</div>
 			<a href="#"><i class="fal fa-clipboard-user cart"></i></a>
-
 		</div>`;
     }
     registerToACourse();
+    viewCourseDetails();
 }
 
 function getData(){
+  var user= JSON.parse(localStorage.getItem("logedInUser"));
   $.ajax({
     type:"GET",
-    url:"http://localhost:8080/courses", 
+    url:"http://localhost:8080/courses/"+user.id, 
     success: function(data){
         console.log(data);
         start(data);
@@ -50,8 +51,17 @@ function registerToACourse(){
   //carts[1] kap  produktin e dyte tek screeni
   for(let i=0; i<carts.length;i++){
     carts[i].addEventListener('click',()=>{
-        console.log(' u shtua ne shport'+i);
         localStorage.setItem("selectedCourse",JSON.stringify(courses[i]));
+        window.location.href = 'course.html';
+    })
+  }
+}
+function viewCourseDetails(){
+  let courseRef=document.querySelectorAll('.pro');
+  for(let i=0; i<courseRef.length; i++){
+    courseRef[i].addEventListener('click',()=>{
+      localStorage.setItem("selectedCourse",JSON.stringify(courses[i]));
+      window.location.href = 'course.html';
     })
   }
 }
