@@ -22,15 +22,16 @@ create table course (
     start_time varchar(14),
     end_time varchar(14),
     registered_students int,
+    no_of_feedbacks int,
     PRIMARY KEY (id)
 );
 
+
 DROP TABLE IF EXISTS  user_course_relate;
 create table user_course_relate (
-	id int not null auto_increment,
+	
 	course_id int, 
     user_id int,
-    PRIMARY KEY(id),
     FOREIGN KEY (course_id) REFERENCES course (id),
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
@@ -82,10 +83,14 @@ create table comments (
     comment varchar(250) not null,
     user_id int,
     course_id int,
+    rating int,
+    publish_date date,
     PRIMARY KEY (id),
     FOREIGN KEY (course_id) REFERENCES course (id),
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
+
+
 
 SELECT * FROM course;
 SELECT * FROM user;
