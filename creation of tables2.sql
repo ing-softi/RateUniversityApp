@@ -98,3 +98,5 @@ SELECT * FROM user_course_relate;
 SELECT * FROM role;
 SELECT * FROM user_role_relate;
 SELECT * FROM comments;
+
+#INSERT INTO user_course_relate VALUES (1,1);
