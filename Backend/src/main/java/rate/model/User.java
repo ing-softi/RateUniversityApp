@@ -1,8 +1,8 @@
 package rate.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import rate.dto.UserDto;
+
+import java.util.Objects;
 
 @Entity
 @Table (name = "user")
@@ -26,12 +26,7 @@ public class User {
         this.password = password;
     }
 
-    public User(UserDto userDto){
-        this.name = userDto.getName();
-        this.surname =userDto.getSurname();
-        this.email = userDto.getEmail();
-        this.password = userDto.getPassword();
-    }
+
     public Integer getId() {
         return id;
     }
@@ -71,4 +66,28 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return ((id==null && user.id==null) || (id.equals(user.id))) &&
+
+                ((name==null && user.name==null) || (name.equals(user.name))) &&
+                ((surname==null && user.surname==null) || (surname.equals(user.surname))) &&
+                ((email==null && user.email==null) || (email.equals(user.email))) &&
+                ((password==null && user.password==null) || (password.equals(user.password)));
+    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+
 }

@@ -12,6 +12,9 @@ public interface UserRepo extends  JpaRepository<User,Integer> {
     @Query(value = "SELECT COUNT(*) FROM user u WHERE u.email = :email ", nativeQuery = true)
     int countUsersWithEmail(@Param("email") String email);
 
+    @Query(value = "SELECT DISTINCT * FROM user u WHERE u.email = :email ", nativeQuery = true)
+    User getUserByEmail(@Param("email") String email);
+
       /*
     Sr.No	Method & Description
 1
