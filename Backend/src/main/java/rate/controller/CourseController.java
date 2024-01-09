@@ -39,6 +39,7 @@ public class CourseController {
     public void insert( @RequestParam Integer courseId,@RequestParam Integer userId ){
         courseService.updateCourse(courseId,+1);
         courseService.insertUserCourseRelate(courseId,userId);
+
     }
 
 
