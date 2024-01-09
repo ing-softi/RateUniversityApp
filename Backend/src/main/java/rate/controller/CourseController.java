@@ -40,6 +40,8 @@ public class CourseController {
         courseService.updateCourse(courseId,+1);
         courseService.insertUserCourseRelate(courseId,userId);
 
+
+
     }
 
 
