@@ -27,4 +27,22 @@ public class CourseController {
         return courseService.findCourseRegistrationStatus(userId);
     }
 
+    @CrossOrigin("*")
+    @GetMapping("/delete")
+    public void delete( @RequestParam Integer courseId,@RequestParam Integer userId ){
+        courseService.updateCourse(courseId,-1);
+        courseService.deleteUserCourseRelate(courseId,userId);
+    }
+    //insertUserCourseRelate
+    @CrossOrigin("*")
+    @GetMapping("/insert")
+    public void insert( @RequestParam Integer courseId,@RequestParam Integer userId ){
+        courseService.updateCourse(courseId,+1);
+        courseService.insertUserCourseRelate(courseId,userId);
+
+
+
+    }
+
+
 }
