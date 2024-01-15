@@ -1,11 +1,12 @@
 package rate.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rate.dto.CourseRegistrationStatus;
 import rate.model.Course;
+import rate.repository.CourseRepo;
 import rate.service.CourseService;
-
 import java.util.List;
 
 @RestController
@@ -43,6 +44,13 @@ public class CourseController {
 
 
     }
+
+    @CrossOrigin("*")
+    @GetMapping("/dataForCalendar/{userId}")
+    public List<Course>[] dataForCalendar(@PathVariable Integer userId){
+        return courseService.dataForCalendar(userId);
+    }
+
 
 
 }
